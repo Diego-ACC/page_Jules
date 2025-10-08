@@ -1,0 +1,192 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #1e293b;
+  color: white;
+}
+
+header h1 {
+  font-size: 1.8rem;
+}
+
+nav a {
+  margin-left: 1rem;
+  color: white;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav a:hover, nav a.active {
+  background: #3b82f6;
+}
+
+.section {
+  display: none;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.section.active {
+  display: block;
+}
+
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 1rem 0;
+}
+
+.home-buttons button {
+  margin: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.home-buttons button:hover {
+  background: #2563eb;
+}
+
+.skills span {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  margin: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+}
+
+.projects {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  flex: 1 1 200px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #1e293b;
+  color: white;
+}
+
+#toggle-music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s;
+}
+
+#toggle-music:hover {
+  background: #2563eb;
+}
+
+/* === HOME SECCIÓN CON DIVISIÓN === */
+.home-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Lado izquierdo (info personal) */
+.home-left {
+  flex: 1 1 300px;
+}
+
+/* Lado derecho (disco y créditos) */
+.home-right {
+  flex: 1 1 250px;
+  text-align: center;
+}
+
+.album-cover {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
+}
+
+.music-info h3 {
+  margin: 0.5rem 0;
+}
+
+.credit-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.credit-buttons a {
+  text-decoration: none;
+  background: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.credit-buttons a:hover {
+  background: #2563eb;
+}
+
+/* === Animación de rotación del vinilo === */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Estado normal (pausado) */
+.album-cover {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%; /* hace que parezca un vinilo */
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Cuando esté reproduciendo música */
+.album-cover.spinning {
+  animation: spin 10s linear infinite;
+}
