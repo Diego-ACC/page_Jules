@@ -47,10 +47,10 @@ toggleBtn.addEventListener("click", () => {
   if (music.paused) {
     music.play();
     vinyl.classList.add("spinning");
-    toggleBtn.textContent = "🎵 Música: Pausar";
+    toggleBtn.textContent = "🎵 Music: Pause";
   } else {
     music.pause();
     vinyl.classList.remove("spinning");
-    toggleBtn.textContent = "🎵 Música: Reproducir";
+    toggleBtn.textContent = "🎵 Music: Play";
   }
 });
