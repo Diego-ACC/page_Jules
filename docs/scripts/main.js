@@ -6,16 +6,20 @@ links.forEach(link => {
     e.preventDefault();
     const target = link.dataset.target;
 
-    // Cambiar sección visible
+    //Cambiar sección visible
     sections.forEach(s => s.classList.remove("active"));
     document.getElementById(target).classList.add("active");
 
-    // Cambiar link activo
+    //Cambiar link activo
     links.forEach(l => l.classList.remove("active"));
     link.classList.add("active");
   });
 });
 
+
+/* ===================== */
+/* === MUSIC BUTTON === */
+/* =================== */
 // 🎵 Control de música de fondo
 const music = document.getElementById("bg-music");
 const toggleBtn = document.getElementById("toggle-music");
@@ -33,6 +37,9 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/* ======================= */
+/* === MUSIC AUTOPLAY === */
+/* ===================== */
 // Si el navegador bloquea el autoplay, reproducir en el primer clic o tecla
 function startMusicOnce() {
   music.play().then(() => vinyl.classList.add("spinning")).catch(() => {});
@@ -53,4 +60,68 @@ toggleBtn.addEventListener("click", () => {
     vinyl.classList.remove("spinning");
     toggleBtn.textContent = "🎵 Music: Play";
   }
+});
+
+/* ====================================== */
+/* === LIGHT FOLLOWING MOUSE / TOUCH === */
+/* ==================================== */
+const light = document.createElement('div');
+light.style.position = 'fixed';
+light.style.width = '60px';
+light.style.height = '60px';
+light.style.borderRadius = '50%';
+light.style.pointerEvents = 'none';
+light.style.background = 'radial-gradient(circle, #C5191B 0%, rgba(255,255,255,0) 70%)';
+light.style.transform = 'translate(-50%, -50%)';
+light.style.transition = 'opacity 0.4s ease';
+light.style.opacity = '0';
+document.body.appendChild(light);
+
+// PC: sigue el cursor
+document.addEventListener('mousemove', (e) => {
+  light.style.left = e.clientX + 'px';
+  light.style.top = e.clientY + 'px';
+  light.style.opacity = '1';
+});
+
+// Móvil: muestra luz temporal al tocar
+document.addEventListener('touchstart', (e) => {
+  const touch = e.touches[0];
+  light.style.left = touch.clientX + 'px';
+  light.style.top = touch.clientY + 'px';
+  light.style.opacity = '1';
+  setTimeout(() => light.style.opacity = '0', 400);
+});
+
+/* ============================= */
+/* === TIME-BASED ANIMATION === */
+/* =========================== */
+const hour = new Date().getHours();
+const greeting = document.querySelector('.home-left h2');
+
+if (hour < 12) {
+  greeting.textContent = '☀️ ¡You were sleep, time to wake up!';
+  //document.body.style.background = '#fef3c7';
+} else if (hour < 19) {
+  greeting.textContent = '🌇 In the evening sun...';
+  //document.body.style.background = '#fde68a';
+} else {
+  greeting.textContent = '🌙 Good Night, see ya tomorrow';
+  //document.body.style.background = '#1e293b';
+  //document.body.style.color = '#e2e8f0';
+}
+
+/* ======================== */
+/* === LIGHT/DARK MODE === */
+/* ====================== */
+const toggleTheme = document.getElementById('theme-toggle');
+const savedTheme = localStorage.getItem('theme');
+
+if (savedTheme === 'dark') document.body.classList.add('dark-mode');
+
+toggleTheme.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  toggleTheme.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });

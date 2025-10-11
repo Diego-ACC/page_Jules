@@ -1,36 +1,44 @@
+/* === BASE GENERAL === */
 body {
   font-family: 'Poppins', sans-serif;
-  background: #f9f9f9;
-  color: #333;
+  background: #DEDEDE; /* gris claro */
+  color: #0E0B0C; /* texto oscuro */
   margin: 0;
+  transition: background 0.3s, color 0.3s;
 }
 
+/* === HEADER Y NAVEGACIÓN === */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: #1e293b;
-  color: white;
+  background: #1B171B; /* gris muy oscuro */
+  color: #DEDEDE;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
   font-size: 1.8rem;
+  color: #C5191B; /* rojo vibrante */
 }
 
 nav a {
   margin-left: 1rem;
-  color: white;
+  color: #DEDEDE;
   text-decoration: none;
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
-  transition: background 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
-nav a:hover, nav a.active {
-  background: #3b82f6;
+nav a:hover,
+nav a.active {
+  background: #6F1315; /* rojo oscuro */
+  color: #DEDEDE;
 }
 
+/* === SECCIONES === */
 .section {
   display: none;
   padding: 2rem;
@@ -41,19 +49,22 @@ nav a:hover, nav a.active {
   display: block;
 }
 
+/* === IMÁGENES === */
 .profile-img {
   width: 180px;
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
   margin: 1rem 0;
+  border: 3px solid #C5191B; /* detalle elegante */
 }
 
+/* === BOTONES DE HOME === */
 .home-buttons button {
   margin: 0.5rem;
   padding: 0.6rem 1.2rem;
   border: none;
-  background: #3b82f6;
+  background: #C5191B; /* rojo vibrante */
   color: white;
   border-radius: 5px;
   cursor: pointer;
@@ -61,18 +72,20 @@ nav a:hover, nav a.active {
 }
 
 .home-buttons button:hover {
-  background: #2563eb;
+  background: #6F1315; /* rojo oscuro */
 }
 
+/* === SKILLS === */
 .skills span {
   display: inline-block;
-  background: #e0f2fe;
-  color: #0369a1;
+  background: #C5191B22; /* rojo translúcido */
+  color: #6F1315;
   margin: 0.3rem;
   padding: 0.3rem 0.6rem;
   border-radius: 5px;
 }
 
+/* === PROYECTOS === */
 .projects {
   display: flex;
   gap: 1rem;
@@ -85,39 +98,43 @@ nav a:hover, nav a.active {
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   flex: 1 1 200px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.25);
 }
 
+/* === FOOTER === */
 footer {
   text-align: center;
   padding: 1rem;
-  background: #1e293b;
-  color: white;
+  background: #1B171B;
+  color: #DEDEDE;
 }
 
+/* === BOTÓN DE MÚSICA === */
 #toggle-music {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #3b82f6;
+  background: #C5191B;
   color: white;
   border: none;
   padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 
 #toggle-music:hover {
-  background: #2563eb;
+  background: #6F1315;
+  transform: scale(1.05);
 }
 
-/* === HOME SECCIÓN CON DIVISIÓN === */
+/* === SECCIÓN HOME === */
 .home-section {
   display: flex;
   justify-content: space-between;
@@ -126,12 +143,10 @@ footer {
   gap: 2rem;
 }
 
-/* Lado izquierdo (info personal) */
 .home-left {
   flex: 1 1 300px;
 }
 
-/* Lado derecho (disco y créditos) */
 .home-right {
   flex: 1 1 250px;
   text-align: center;
@@ -140,25 +155,22 @@ footer {
 .album-cover {
   width: 250px;
   height: 250px;
-  border-radius: 10px;
+  border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   margin-bottom: 1rem;
+  border: 3px solid #C5191B;
+  transition: transform 0.3s ease;
 }
 
-.music-info h3 {
-  margin: 0.5rem 0;
+.album-cover.spinning {
+  animation: spin 10s linear infinite;
 }
 
-.credit-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
+/* === CREDITOS === */
 .credit-buttons a {
   text-decoration: none;
-  background: #3b82f6;
+  background: #C5191B;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -166,27 +178,63 @@ footer {
 }
 
 .credit-buttons a:hover {
-  background: #2563eb;
+  background: #6F1315;
 }
 
-/* === Animación de rotación del vinilo === */
+/* === DARK MODE === */
+body.dark-mode {
+  background: #0E0B0C;
+  color: #DEDEDE;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background: #1B171B;
+}
+
+body.dark-mode .card {
+  background: #1B171B;
+  color: #DEDEDE;
+}
+
+body.dark-mode .home-buttons button {
+  background: #6F1315;
+}
+
+body.dark-mode .home-buttons button:hover {
+  background: #C5191B;
+}
+
+/* === THEME BUTTON === */
+#theme-toggle {
+  margin-left: 1rem;
+  background: #C5191B;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#theme-toggle:hover {
+  background: #6F1315;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Estado normal (pausado) */
-.album-cover {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%; /* hace que parezca un vinilo */
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease;
-}
-
-/* Cuando esté reproduciendo música */
-.album-cover.spinning {
-  animation: spin 10s linear infinite;
+/* === HEADER LEFT === */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
