@@ -1,6 +1,44 @@
 const links = document.querySelectorAll("nav a");
 const sections = document.querySelectorAll("main .section");
 
+// ======================================
+// BOTONES DE HOBBIES
+// ======================================
+// Selecciona todos los links de hobbies
+const hobbyLinks = document.querySelectorAll('.hobby-link');
+const hobbySections = document.querySelectorAll('.hobby-section');
+const sobreMiSection = document.getElementById('sobre-mi');
+
+// Función para mostrar una sección de hobby
+hobbyLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Oculta la sección "Sobre mí"
+    sobreMiSection.classList.remove('active');
+
+    // Oculta todas las secciones de hobbies
+    hobbySections.forEach(sec => sec.classList.remove('active'));
+
+    // Muestra la sección clickeada
+    const target = document.getElementById(link.dataset.target);
+    if(target) target.classList.add('active');
+  });
+});
+
+// Función para regresar a "Sobre mí"
+const backButtons = document.querySelectorAll('.back-to-hobbies');
+backButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Oculta todas las secciones de hobbies
+    hobbySections.forEach(sec => sec.classList.remove('active'));
+
+    // Muestra la sección "Sobre mí"
+    sobreMiSection.classList.add('active');
+  });
+});
+
+
 links.forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
@@ -126,54 +164,130 @@ toggleTheme.addEventListener('click', () => {
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
-
-// 🎞 Lista de GIFs que irán rotando
-const gifs = [
-  "assets/gifs/pikachu-running.gif",
-  "assets/gifs/pixel_charizard.gif"
-];
-
-const gifContainer = document.getElementById("gif-container");
-
-// Función para cambiar el GIF aleatoriamente
-function changeGif() {
-  const randomIndex = Math.floor(Math.random() * gifs.length);
-  const gifSrc = gifs[randomIndex];
-
-  gifContainer.innerHTML = `<img src="${gifSrc}" alt="gif animado">`;
-}
-
-// Cambiar cada cierto tiempo (por ejemplo, cada 10 segundos)
-changeGif();
-setInterval(changeGif, 10000);
-
-
 /* =============================== */
 /* === HOBBIES: NAV + RIPPLE === */
 /* ============================= */
+// 🧩 Guardamos el contenido original del <main>
+const originalMainHTML = document.querySelector("main").innerHTML;
+
+// 🎨 Cargar dinámicamente contenido de hobbies (como drawing.html)
+document.querySelectorAll(".hobby-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const link = card.getAttribute("data-link");
+    fetch(link)
+      .then(response => response.text())
+      .then(html => {
+        // Insertamos el contenido de <main> del archivo cargado
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const newContent = doc.querySelector("main") || doc.body;
+
+        const main = document.querySelector("main");
+
+        // Efecto de transición suave
+        main.style.opacity = "0";
+        setTimeout(() => {
+          main.innerHTML = newContent.innerHTML;
+          main.style.opacity = "1";
+
+          // 🔙 Restaurar contenido original al hacer clic en Back
+          const backBtn = document.getElementById("back-home");
+          if (backBtn) {
+            backBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              main.style.opacity = "0";
+              setTimeout(() => {
+                main.innerHTML = originalMainHTML;
+                main.style.opacity = "1";
+
+                // ⚙️ Volvemos a enlazar los eventos de las hobby-cards
+                restoreHobbyCardEvents();
+              }, 300);
+            });
+          }
+        }, 300);
+      })
+      .catch(err => console.error("Error cargando la página:", err));
+  });
+});
+
+// 🔁 Reasignar eventos a las hobby-cards al regresar
+function restoreHobbyCardEvents() {
+  document.querySelectorAll(".hobby-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const link = card.getAttribute("data-link");
+      fetch(link)
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, "text/html");
+          const newContent = doc.querySelector("main") || doc.body;
+          const main = document.querySelector("main");
+          main.innerHTML = newContent.innerHTML;
+
+          // Volvemos a enlazar el botón de regreso
+          const backBtn = document.getElementById("back-home");
+          if (backBtn) {
+            backBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              main.innerHTML = originalMainHTML;
+              restoreHobbyCardEvents();
+            });
+          }
+        });
+    });
+  });
+}
+
+// Efecto de agua en hobbies
 document.querySelectorAll('.hobby-card').forEach(card => {
-  // Ripple en click o toque
-  function createRipple(e) {
+  card.addEventListener('click', (e) => {
+    // Crear el efecto de agua
     const ripple = document.createElement('span');
-    ripple.classList.add('ripple');
+    ripple.classList.add('ripple-effect');
+
     const rect = card.getBoundingClientRect();
-    const x = (e.clientX || e.touches[0].clientX) - rect.left;
-    const y = (e.clientY || e.touches[0].clientY) - rect.top;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
     ripple.style.left = `${x}px`;
     ripple.style.top = `${y}px`;
     card.appendChild(ripple);
+
+    // Quitar el efecto después de 600ms
     setTimeout(() => ripple.remove(), 600);
-  }
 
-  card.addEventListener('click', e => {
-    createRipple(e);
-    const link = card.dataset.link;
+    // Redirigir después del efecto
     setTimeout(() => {
-      window.location.href = link;
-    }, 400);
-  });
-
-  card.addEventListener('touchstart', e => {
-    createRipple(e);
+      window.location.href = card.dataset.link;
+    }, 300);
   });
 });
+
+
+// 🎞️ Cambio automático del GIF al lado del nombre
+const gifElement = document.querySelector('.name-gif');
+
+// Array de rutas de tus GIFs (ajusta los nombres a los que tengas)
+const gifs = [
+  'assets/gifs/link-zelda.gif',
+  'assets/gifs/pikachu-running.gif',
+  'assets/gifs/cloud-strife.gif',
+  'assets/gifs/link-botw.gif',
+  'assets/gifs/pixel_charizard.gif'
+];
+
+// Cambiar GIF cada 8 segundos
+let currentGifIndex = 0;
+
+setInterval(() => {
+  // Seleccionar siguiente gif
+  currentGifIndex = (currentGifIndex + 1) % gifs.length;
+
+  // Aplicar una pequeña transición de opacidad
+  gifElement.classList.add('fade-out');
+  setTimeout(() => {
+    gifElement.src = gifs[currentGifIndex];
+    gifElement.classList.remove('fade-out');
+  }, 400);
+}, 6000);

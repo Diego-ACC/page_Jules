@@ -11,7 +11,10 @@
 
   <header>
     <div class="header-left">
-      <h1>Diego Carrillo</h1>
+      <h1 class="header-title">
+        Diego Carrillo
+        <img src="assets/gifs/link-zelda.gif" alt="gif" class="name-gif">
+      </h1>
       <button id="theme-toggle">🌙 Modo Oscuro</button>
     </div>
     <nav>
@@ -53,24 +56,66 @@
     </section>
 
 
-    <!-- Sobre mí -->
+    <!-- =========================
+          SOBRE MÍ
+    ========================= -->
     <section id="sobre-mi" class="section">
-      <h2>About me</h2>
-      <p>Still working on it, but in the meantime, see what I have </p>
+      <h2>About Me</h2>
+      <p>Still working on it, but in the meantime, see what I have</p>
+
       <h3>Hobbies</h3>
-      <div class="hobbies-container">
-        <div class="hobby-card" data-link="drawing.html" style="background-image: url('assets/img/Hobbies/draw_hobbie.jpg')">
-          <span>Drawing ✍️</span>
-        </div>
+
+      <nav class="hobbies-nav">
+        <a href="#" data-target="reading" class="hobby-link">Reading 📖</a>
+        <a href="#" data-target="gaming" class="hobby-link">Gaming 🎮</a>
+        <a href="#" data-target="music" class="hobby-link">Music 🎵</a>
+        <a href="#" data-target="soccer" class="hobby-link">Soccer ⚽</a>
+        <a href="#" data-target="drawing" class="hobby-link">Drawing ✍️</a>
+        <a href="#" data-target="tv-movies" class="hobby-link">TV Shows & Movies 🍿</a>
+      </nav>
+    </section>
+
+    <!-- =========================
+          HOBBIES SECTIONS
+    ========================= -->
+    <section id="reading" class="section hobby-section">
+      <h2>Reading 📖</h2>
+      <button class="back-to-hobbies">⬅️ Back</button>
+      <p>Some of my favorite books and authors.</p>
+    </section>
+
+    <section id="gaming" class="section hobby-section">
+      <h2>Gaming 🎮</h2>
+      <button class="back-to-hobbies">⬅️ Back</button>
+      <p>My favorite games and platforms.</p>
+    </section>
+
+    <section id="music" class="section hobby-section">
+      <h2>Music 🎵</h2>
+      <button class="back-to-hobbies">⬅️ Back</button>
+      <p>My favorite artists: Twenty One Pilots, The Strokes, Harry Styles, The Warning...</p>
+    </section>
+
+    <section id="soccer" class="section hobby-section">
+      <h2>Soccer ⚽</h2>
+      <button class="back-to-hobbies">⬅️ Back</button>
+      <p>Teams I support and playing experience.</p>
+    </section>
+
+    <section id="drawing" class="section hobby-section">
+      <h2>Drawing ✍️</h2>
+      <button class="back-to-hobbies">⬅️ Back</button>
+      <div class="gallery">
+        <img src="assets/img/Hobbies/draw_hobbie.jpg" alt="Drawing 1">
+        <img src="assets/img/Hobbies/pixel_dragon.jpg" alt="Drawing 2">
+        <img src="assets/img/Hobbies/pixel_shark.jpg" alt="Drawing 3">
       </div>
-      <ul>
-        <li>Reading 📖</li>
-        <li>Gaming 🎮</li>
-        <li>Music 🎵(Twenty One Pilots, The Strokes, Harry Styles, The Warning...)</li>
-        <li>Soccer ⚽</li>
-        <li>Drawing ✍️</li>
-        <li>TV Shows & Movies 🍿</li>
-      </ul>
+    </section>
+
+    <section id="tv-movies" class="section hobby-section">
+      <h2>TV Shows & Movies 🍿</h2>
+      <button class="back-to-hobbies">⬅️ Back</button>
+      <p>Shows and movies I love to watch.</p>
     </section>
 
     <!-- Profesional -->
@@ -105,7 +150,6 @@
 
   <footer>
     <p>&copy; 2025 Diego Carrillo</p>
-    <div id="gif-container"></div>
   </footer>
   
   <!-- 🎶 Música de fondo -->

@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drawing ✍️ - Diego Carrillo</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
-  <header>
-    <h1>Drawing ✍️</h1>
-    <a href="index.html" style="color:white; text-decoration:none;">⬅️ Back</a>
-  </header>
-
   <main style="text-align:center; padding:2rem;">
+    <h1>Drawing ✍️</h1>
+    <a href="index.html" id="back-home" style="color:white; text-decoration:none;">⬅️ Back</a>
+
     <h2>Some of my drawings</h2>
     <p>Here are a few sketches and digital art pieces I’ve made.</p>
 
@@ -23,8 +21,10 @@
     </div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Diego Carrillo</p>
-  </footer>
+  <!-- 🎶 Música global -->
+  <audio id="bg-music" src="assets/music/02_RAWFEAR.mp3" loop></audio>
+  <button id="toggle-music" aria-label="Pause or Play music">🎵 Music: Pause</button>
+
+  <script src="scripts/main.js"></script>
 </body>
 </html>

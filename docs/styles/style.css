@@ -325,3 +325,99 @@ body.dark-mode .home-buttons button:hover {
   object-fit: cover;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+
+/* 🌊 Efecto de agua (ripple) */
+.hobby-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  width: 250px;
+  height: 200px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 5px black;
+  transition: transform 0.3s ease;
+}
+
+.hobby-card:hover {
+  transform: scale(1.03);
+}
+
+.ripple-effect {
+  position: absolute;
+  transform: scale(0);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(8);
+    opacity: 0;
+  }
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.name-gif {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+  transition: opacity 0.4s ease;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+main {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* === BOTÓN BACK TO HOBBIES === */
+.back-to-hobbies {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  background-color: #C5191B; /* rojo vibrante, mismo que home-buttons */
+  color: white;
+}
+
+.back-to-hobbies:hover {
+  background-color: #6F1315; /* rojo oscuro */
+  transform: scale(1.05);
+}
+
+/* === DARK MODE PARA BACK BUTTON === */
+body.dark-mode .back-to-hobbies {
+  background-color: #6F1315; /* coincide con home-buttons dark mode */
+  color: #DEDEDE;
+}
+
+body.dark-mode .back-to-hobbies:hover {
+  background-color: #C5191B; /* efecto invertido en hover */
+}
