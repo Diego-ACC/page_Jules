@@ -485,6 +485,69 @@ body.dark-mode .artists-gallery span::after {
 
 
 
+
+
+/* === TV SHOWS & MOVIES GALLERY === */
+.entertainment-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.entertainment-gallery img {
+  width: 150px;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Contenedor invisible que servirá para mostrar el texto */
+.entertainment-gallery span {
+  position: relative;
+  display: inline-block;
+}
+
+/* Efecto hover */
+.entertainment-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Nombre del artista */
+.entertainment-gallery span::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.3rem;
+  border-radius: 0 0 15px 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+/* Mostrar el texto al hacer hover */
+.entertainment-gallery span:hover::after {
+  opacity: 1;
+}
+
+/* Modo oscuro */
+body.dark-mode .entertainment-gallery span::after {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+
 /* === MÓVILES: PANTALLAS MENORES A 600PX === */
 @media (max-width: 600px) {
   body {
