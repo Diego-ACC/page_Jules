@@ -125,3 +125,55 @@ toggleTheme.addEventListener('click', () => {
   toggleTheme.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
+
+
+// 🎞 Lista de GIFs que irán rotando
+const gifs = [
+  "assets/gifs/pikachu-running.gif",
+  "assets/gifs/pixel_charizard.gif"
+];
+
+const gifContainer = document.getElementById("gif-container");
+
+// Función para cambiar el GIF aleatoriamente
+function changeGif() {
+  const randomIndex = Math.floor(Math.random() * gifs.length);
+  const gifSrc = gifs[randomIndex];
+
+  gifContainer.innerHTML = `<img src="${gifSrc}" alt="gif animado">`;
+}
+
+// Cambiar cada cierto tiempo (por ejemplo, cada 10 segundos)
+changeGif();
+setInterval(changeGif, 10000);
+
+
+/* =============================== */
+/* === HOBBIES: NAV + RIPPLE === */
+/* ============================= */
+document.querySelectorAll('.hobby-card').forEach(card => {
+  // Ripple en click o toque
+  function createRipple(e) {
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX || e.touches[0].clientX) - rect.left;
+    const y = (e.clientY || e.touches[0].clientY) - rect.top;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    card.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  }
+
+  card.addEventListener('click', e => {
+    createRipple(e);
+    const link = card.dataset.link;
+    setTimeout(() => {
+      window.location.href = link;
+    }, 400);
+  });
+
+  card.addEventListener('touchstart', e => {
+    createRipple(e);
+  });
+});

@@ -238,3 +238,90 @@ body.dark-mode .home-buttons button:hover {
   align-items: center;
   gap: 1rem;
 }
+
+#gif-container {
+  position: fixed; /* o absolute si lo quieres dentro de un bloque */
+  bottom: 20px;
+  left: 20px;
+  width: 150px;
+  height: 130px;
+  z-index: 100;
+  border-radius: 10px;
+  overflow: hidden;
+  /*box-shadow: 0 0 10px rgba(0,0,0,0.4);*/
+}
+
+#gif-container img {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
+
+/* === HOBBIES SECTION === */
+.hobbies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.hobby-card {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.hobby-card:hover {
+  transform: scale(1.05);
+}
+
+.hobby-card span {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+}
+
+/* === Ripple Effect === */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-effect 0.6s linear;
+  background: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.gallery img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
