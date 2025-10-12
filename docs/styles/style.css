@@ -423,7 +423,69 @@ body.dark-mode .back-to-hobbies:hover {
 }
 
 
-/* Para móviles: pantallas menores a 600px */
+/* === ARTISTS GALLERY === */
+.artists-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.artists-gallery img {
+  width: 150px;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Contenedor invisible que servirá para mostrar el texto */
+.artists-gallery span {
+  position: relative;
+  display: inline-block;
+}
+
+/* Efecto hover */
+.artists-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Nombre del artista */
+.artists-gallery span::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.3rem;
+  border-radius: 0 0 15px 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+/* Mostrar el texto al hacer hover */
+.artists-gallery span:hover::after {
+  opacity: 1;
+}
+
+/* Modo oscuro */
+body.dark-mode .artists-gallery span::after {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+
+
+/* === MÓVILES: PANTALLAS MENORES A 600PX === */
 @media (max-width: 600px) {
   body {
     font-size: 14px; /* texto más pequeño */
@@ -458,4 +520,35 @@ body.dark-mode .back-to-hobbies:hover {
     padding: 0.4rem 0.6rem;
     font-size: 0.9rem;
   }
+
+  .artists-gallery img {
+    width: 150px;
+    height: 150px;
+  }
 }
+
+/* 🎵 Estilo para la sección de música */
+.artists-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.artists-gallery img {
+  width: 220px;
+  height: 220px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover con efecto suave tipo zoom y resplandor */
+.artists-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  filter: brightness(1.1);
+}
+

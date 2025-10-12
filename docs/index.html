@@ -93,7 +93,24 @@
     <section id="music" class="section hobby-section">
       <h2>Music 🎵</h2>
       <button class="back-to-hobbies">⬅️ Back</button>
-      <p>My favorite artists: Twenty One Pilots, The Strokes, Harry Styles, The Warning...</p>
+      <p>Some of my favorite artists</p>
+      <div class="artists-gallery">
+        <span data-name="Avenged Sevenfold"><img src="assets/img/music_icons/a7x_icon.jpg"></span>
+        <span data-name="The Weekend"><img src="assets/img/music_icons/abelT_icon.jpg"></span>
+        <span data-name="Arctic Monkeys"><img src="assets/img/music_icons/arcticmonkeys_icon.jpg"></span>
+        <span data-name="Caifanes"><img src="assets/img/music_icons/caifanes.jpg"></span>
+        <span data-name="José Madero"><img src="assets/img/music_icons/pepemadero_icon.jpg"></span>
+        <span data-name="Twenty One Pilots"><img src="assets/img/music_icons/top_icon.jpg"></span>
+        <span data-name="Harry Styles"><img src="assets/img/music_icons/harryStyles_icon.jpg"></span>
+        <span data-name="Julian Casablancas"><img src="assets/img/music_icons/jcasablancas_icon.jpg"></span>
+        <span data-name="Joji"><img src="assets/img/music_icons/joji_icon.jpg"></span>
+        <span data-name="Kanye West"><img src="assets/img/music_icons/kanye_icon.jpg"></span>
+        <span data-name="Oasis"><img src="assets/img/music_icons/oasis_icon.jpg"></span>
+        <span data-name="Paramore"><img src="assets/img/music_icons/paramore_icon.jpg"></span>
+        <span data-name="Sabrina Carpenter"><img src="assets/img/music_icons/sabrinacarpenter_icon.jpg"></span>
+        <span data-name="The Warning"><img src="assets/img/music_icons/thewarning_icon.jpg"></span>
+        <span data-name="The Strokes"><img src="assets/img/music_icons/thestrokes_icon.jpg"></span>
+      </div>
     </section>
 
     <section id="soccer" class="section hobby-section">
@@ -157,5 +174,14 @@
   <button id="toggle-music" aria-label="Pause or Play music">🎵 Music: Pause</button>
 
   <script src="scripts/main.js"></script>
+  <script>
+    document.querySelectorAll('.artist-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const name = card.querySelector('.artist-name');
+        name.style.opacity = name.style.opacity === '1' ? '0' : '1';
+      });
+    });
+  </script>
+
 </body>
 </html>
