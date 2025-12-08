@@ -196,7 +196,6 @@
   <audio id="bg-music" src="assets/music/02_RAWFEAR.mp3" loop></audio>
   <button id="toggle-music" aria-label="Pause or Play music">🎵 Music: Pause</button>
 
-  <script src="scripts/main.js"></script>
   <script>
     document.querySelectorAll('.artist-card').forEach(card => {
       card.addEventListener('click', () => {
@@ -204,7 +203,23 @@
         name.style.opacity = name.style.opacity === '1' ? '0' : '1';
       });
     });
-  </script>
-
+    </script>
+  <!-- Botón del agente -->
+  <div id="agent-button"> 🤖 </div>
+  
+  <!-- Contenedor del chat -->
+  <div id="agent-chat" class="" role="dialog" aria-label="Chat del agente" aria-hidden="true">
+    <button id="close-agent-chat" class="close-chat" aria-label="Cerrar chat">Close Jules T800</button>
+    <!-- Área de mensajes -->
+    <div id="agent-messages"></div>
+    <!-- Preguntas pre-cargadas -->
+    <div id="agent-questions">
+      <button data-id="1">¿Quién eres?</button>
+      <button data-id="2">¿Qué puedes hacer?</button>
+      <button data-id="3">Muéstrame un proyecto</button>
+    </div>
+  </div>
+  
+  <script type="module" src="scripts/main.js"></script>
 </body>
 </html>

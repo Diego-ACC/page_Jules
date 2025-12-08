@@ -724,3 +724,75 @@ body.dark-mode .entertainment-gallery span::after {
   filter: brightness(1.1);
 }
 
+/* === AGENT STYLES === */
+#agent-button {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #C5191B;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  z-index: 2000;
+}
+
+#agent-button img {
+  width: 70%;
+  border-radius: 50%;
+}
+
+#agent-chat {
+  display: none;
+  position: fixed;
+  bottom: 160px;
+  right: 20px;
+  width: 260px;
+  height: 320px;
+  background: black;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  padding: 10px;
+  flex-direction: column;
+  z-index: 2000;
+}
+
+/* Mostrar cuando tenga la clase 'open' */
+#agent-chat.open {
+  display: flex;
+}
+
+#agent-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 5px;
+  font-size: 14px;
+}
+
+#agent-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+#agent-questions button {
+  padding: 6px;
+  background: #C5191B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+#agent-questions button:hover {
+  background: #A01417;
+}
+
+.hidden { display: none; }
