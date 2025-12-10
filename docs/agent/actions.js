@@ -6,7 +6,7 @@ export const actions = {
     },
 
     answer(id){
-        if(id === 1) {addMessage("Jules-T800 es un agente virtual diseñado para ayudar a los usuarios a navegar y el blog de Jules.");} 
+        if(id === 1) {addMessage("Jules-T800 es un agente virtual diseñado para ayudar a los usuarios a navegar el blog de Jules.");} 
         if(id === 2) {addMessage("Puedes preguntarme sobre las secciones del blog, curiosidades o cualquier otra cosa relacionada con Jules.");}
         if(id === 3) {addMessage("Claro! En profesional busca el proyecto de Braille to Text, te sorprenderá!");}
     },

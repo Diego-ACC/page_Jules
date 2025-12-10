@@ -2,12 +2,13 @@ import { openChat, closeChat, addMessage, isChatOpen } from "../agent/ui.js";
 import { agent } from "../agent/agent.js";
 import { sensors } from "../agent/sensors.js";
 
+// Esperar a que el DOM esté cargado
 document.addEventListener("DOMContentLoaded", () => {
   init();
 });
 
 function init(){
-
+  // Referencias a links de navegación y secciones
   const links = document.querySelectorAll("nav a");
   const sections = document.querySelectorAll("main .section");
 
@@ -26,6 +27,7 @@ function init(){
     if(firstSection){document.body.setAttribute("data-section", firstSection.id);}
   }
 
+
   // Botón principal del agente
   const agentBtn = document.getElementById("agent-button");
   agentBtn.addEventListener("click", () => {
@@ -39,6 +41,7 @@ function init(){
       }
   });
 
+
   // Botón para cerrar el chat
   const closeBtn = document.getElementById("close-agent-chat");
   if(closeBtn){
@@ -49,6 +52,7 @@ function init(){
     });
   }
 
+
   // Preguntas pre-cargadas (botones dentro de #agent-questions)
   const questionButtons = document.querySelectorAll("#agent-questions button");
   questionButtons.forEach(btn => {
@@ -58,6 +62,8 @@ function init(){
     });
   });
 
+
+  // Navegación principal: actualizar sección en el body
   links.forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
@@ -77,7 +83,7 @@ function init(){
     });
   });
 
-  agent.start(); 
+  agent.start(); //Iniciar el agente mediante su loop
 
 
 
@@ -89,6 +95,7 @@ function init(){
   const hobbyLinks = document.querySelectorAll('.hobby-link');
   const hobbySections = document.querySelectorAll('.hobby-section');
   const sobreMiSection = document.getElementById('sobre-mi');
+
 
   // Función para mostrar una sección de hobby
   hobbyLinks.forEach(link => {
@@ -107,6 +114,7 @@ function init(){
     });
   });
 
+
   // Función para regresar a "Sobre mí"
   const backButtons = document.querySelectorAll('.back-to-hobbies');
   backButtons.forEach(btn => {
@@ -122,7 +130,6 @@ function init(){
 
   
 
-
   /* ===================== */
   /* === MUSIC BUTTON === */
   /* =================== */
@@ -130,6 +137,7 @@ function init(){
   const music = document.getElementById("bg-music");
   const toggleBtn = document.getElementById("toggle-music");
   const vinyl = document.getElementById("vinyl"); // vinilo
+
 
   // Intentar reproducir automáticamente al cargar
   window.addEventListener("DOMContentLoaded", () => {
@@ -155,8 +163,12 @@ function init(){
     document.removeEventListener("click", startMusicOnce);
     document.removeEventListener("keydown", startMusicOnce);
   }
+
+
+  // Escuchar el primer clic o tecla para iniciar la música
   document.addEventListener("click", startMusicOnce);
   document.addEventListener("keydown", startMusicOnce);
+
 
   // Botón para pausar o reproducir manualmente
   toggleBtn.addEventListener("click", () => {
@@ -170,6 +182,7 @@ function init(){
       toggleBtn.textContent = "🎵 Music: Play";
     }
   });
+
 
 
 
@@ -188,12 +201,14 @@ function init(){
   light.style.opacity = '0';
   document.body.appendChild(light);
 
+
   // PC: sigue el cursor
   document.addEventListener('mousemove', (e) => {
     light.style.left = e.clientX + 'px';
     light.style.top = e.clientY + 'px';
     light.style.opacity = '1';
   });
+
 
   // Móvil: muestra luz temporal al tocar
   document.addEventListener('touchstart', (e) => {
@@ -203,6 +218,7 @@ function init(){
     light.style.opacity = '1';
     setTimeout(() => light.style.opacity = '0', 400);
   });
+
 
 
 
@@ -217,7 +233,7 @@ function init(){
     //document.body.style.background = '#fef3c7';
   } else if (hour < 19) {
     greeting.textContent = '🌇 In the evening sun...';
-    //document.body.style.background = '#fde68a';
+
   } else {
     greeting.textContent = '🌙 Good Night, see ya tomorrow';
     //document.body.style.background = '#1e293b';
@@ -248,6 +264,7 @@ function init(){
   /* ============================= */
   // 🧩 Guardamos el contenido original del <main>
   const originalMainHTML = document.querySelector("main").innerHTML;
+
 
   // 🎨 Cargar dinámicamente contenido de hobbies (como drawing.html)
   document.querySelectorAll(".hobby-card").forEach(card => {
@@ -290,6 +307,7 @@ function init(){
     });
   });
 
+
   // 🔁 Reasignar eventos a las hobby-cards al regresar
   function restoreHobbyCardEvents() {
     document.querySelectorAll(".hobby-card").forEach(card => {
@@ -318,6 +336,7 @@ function init(){
     });
   }
 
+
   // Efecto de agua en hobbies
   document.querySelectorAll('.hobby-card').forEach(card => {
     card.addEventListener('click', (e) => {
@@ -344,8 +363,12 @@ function init(){
   });
 
 
+  /* =============================== */
+  /* ============ GIFS ============ */
+  /* ============================= */
   // 🎞️ Cambio automático del GIF al lado del nombre
   const gifElement = document.querySelector('.name-gif');
+
 
   // Array de rutas de tus GIFs (ajusta los nombres a los que tengas)
   const gifs = [
@@ -356,9 +379,11 @@ function init(){
     'assets/gifs/pixel_charizard.gif'
   ];
 
+
   // Cambiar GIF cada 8 segundos
   let currentGifIndex = 0;
 
+  
   setInterval(() => {
     // Seleccionar siguiente gif
     currentGifIndex = (currentGifIndex + 1) % gifs.length;

@@ -3,6 +3,7 @@
 const chatBox = document.getElementById("agent-chat");
 const messagesContainer = document.getElementById("agent-messages");
 
+
 // Función para abrir el chat (visual)
 export function openChat(){
     const box = document.getElementById("agent-chat");
@@ -11,6 +12,7 @@ export function openChat(){
     box.setAttribute("aria-hidden", "false");
 }
 
+// Función para cerrar el chat (visual)
 export function closeChat(){
     const box = document.getElementById("agent-chat");
     if(!box) return;
@@ -19,11 +21,13 @@ export function closeChat(){
     box.setAttribute("aria-hidden", "true");
 }
 
+
 export function isChatOpen(){
     const box = document.getElementById("agent-chat");
     if(!box) return false;
     return box.classList.contains("open");
 }
+
 
 // Agregar un mensaje al chat
 export function addMessage(text){
@@ -37,6 +41,7 @@ export function addMessage(text){
     msgBox.appendChild(div);
     msgBox.scrollTop = msgBox.scrollHeight;
 }
+
 
 // Borrar los mensajes del chat
 export function clearMessages(){
