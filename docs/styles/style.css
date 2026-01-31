@@ -347,8 +347,9 @@ footer {
   text-shadow: 0 2px 5px rgba(0,0,0,0.6);
 }
 
-
+/*=============================*/
 /* === BOOK GALLERY STYLE === */
+/*===========================*/
 .book-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -409,7 +410,66 @@ body.dark-mode .gallery span::after {
 }
 
 
+/*===============================*/
+/* === GAMING GALLERY STYLE === */
+/*=============================*/
+.gaming-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.gaming-gallery img {
+  width: 150px;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.gaming-gallery span {
+  position: relative;
+  display: inline-block;
+}
+
+.gaming-gallery img:hover {
+  transform: scale(1.05);
+}
+
+.gaming-gallery span::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.3rem;
+  border-radius: 0 0 15px 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.gaming-gallery span:hover::after {
+  opacity: 1;
+}
+
+body.dark-mode .gaming-gallery span::after {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+/*========================*/
 /* === GALLERY STYLE === */
+/*======================*/
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -566,8 +626,9 @@ body.dark-mode .back-to-hobbies:hover {
   background-color: #C5191B; /* efecto invertido en hover */
 }
 
-
+/*==========================*/
 /* === ARTISTS GALLERY === */
+/*========================*/
 .artists-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -629,7 +690,9 @@ body.dark-mode .artists-gallery span::after {
 
 
 
+/*====================================*/
 /* === TV SHOWS & MOVIES GALLERY === */
+/*==================================*/
 .entertainment-gallery {
   display: flex;
   flex-wrap: wrap;
