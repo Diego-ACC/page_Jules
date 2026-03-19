@@ -308,6 +308,53 @@ footer {
 
 
 
+
+/*==========================*/
+/* === ABOUT ME SECTION === */
+/*==========================*/
+.hobbies-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.hobby-link {
+  display: inline-block;
+  text-decoration: none;
+  background: #ffffff;
+  color: #0E0B0C;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.hobby-link:hover {
+  background: #C5191B;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Dark mode */
+body.dark-mode #sobre-mi p {
+  color: #DEDEDE;
+}
+
+body.dark-mode .hobby-link {
+  background: #1B171B;
+  color: #DEDEDE;
+  border: 1px solid #444;
+}
+
+body.dark-mode .hobby-link:hover {
+  background: #6F1315;
+  color: #ffffff;
+}
+
+
+
+
 /*==========================*/
 /* === HOBBIES SECTION === */
 /*========================*/
