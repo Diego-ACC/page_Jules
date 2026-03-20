@@ -1,112 +1,214 @@
-/*==================================*/
-/* == DISEÑO PRINCIPAL DEL BLOG == */
-/*================================*/
-/* === BASE GENERAL === */
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #DEDEDE; /* gris claro */
-  color: #0E0B0C; /* texto oscuro */
-  margin: 0;
-  transition: background 0.3s, color 0.3s;
+:root {
+  --font-main: 'Poppins', sans-serif;
+
+  --color-bg: #DEDEDE;
+  --color-text: #0E0B0C;
+  --color-surface-dark: #1B171B;
+  --color-surface-light: #FFFFFF;
+  --color-primary: #C5191B;
+  --color-primary-dark: #6F1315;
+  --color-primary-darker: #A01417;
+  --color-text-light: #DEDEDE;
+  --color-white: #FFFFFF;
+
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  --color-shadow-sm: rgba(0, 0, 0, 0.1);
+  --color-shadow-md: rgba(0, 0, 0, 0.2);
+  --color-shadow-lg: rgba(0, 0, 0, 0.25);
+  --color-shadow-xl: rgba(0, 0, 0, 0.3);
+  --color-shadow-xxl: rgba(0, 0, 0, 0.4);
+  --color-ripple: rgba(255, 255, 255, 0.6);
+  --color-ripple-soft: rgba(255, 255, 255, 0.4);
+  --color-skill-bg: #C5191B22;
+
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 15px;
+  --radius-round: 50%;
+
+  --transition-default: 0.3s;
+  --transition-fast: 0.2s;
 }
 
+/*==================================*/
+/* == DISEÑO PRINCIPAL DEL BLOG == */
+/*==================================*/
+body {
+  font-family: var(--font-main);
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  transition: background var(--transition-default), color var(--transition-default);
+}
 
-/* === HEADER Y NAVEGACIÓN === */
+header,
+footer {
+  background: var(--color-surface-dark);
+  color: var(--color-text-light);
+}
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: #1B171B; /* gris muy oscuro */
-  color: #DEDEDE;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px var(--color-shadow-xl);
 }
 
 header h1 {
   font-size: 1.8rem;
-  color: #C5191B; /* rojo vibrante */
+  color: var(--color-primary);
 }
 
 nav a {
   margin-left: 1rem;
-  color: #DEDEDE;
+  color: var(--color-text-light);
   text-decoration: none;
   padding: 0.4rem 0.8rem;
-  border-radius: 5px;
-  transition: background 0.3s, color 0.3s;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-default), color var(--transition-default);
 }
 
 nav a:hover,
 nav a.active {
-  background: #6F1315; /* rojo oscuro */
-  color: #DEDEDE;
+  background: var(--color-primary-dark);
+  color: var(--color-text-light);
 }
 
+footer {
+  text-align: center;
+  padding: 1rem;
+}
 
 /* === DARK MODE === */
 body.dark-mode {
-  background: #0E0B0C;
-  color: #DEDEDE;
-}
-
-body.dark-mode header,
-body.dark-mode footer {
-  background: #1B171B;
+  background: var(--color-text);
+  color: var(--color-text-light);
 }
 
 body.dark-mode .card {
-  background: #1B171B;
-  color: #DEDEDE;
+  background: var(--color-surface-dark);
+  color: var(--color-text-light);
 }
 
-body.dark-mode .home-buttons button {
-  background: #6F1315;
+body.dark-mode .home-buttons button,
+body.dark-mode .back-to-hobbies {
+  background: var(--color-primary-dark);
 }
 
-body.dark-mode .home-buttons button:hover {
-  background: #C5191B;
+body.dark-mode .home-buttons button:hover,
+body.dark-mode .back-to-hobbies:hover {
+  background: var(--color-primary);
 }
 
+body.dark-mode .back-to-hobbies {
+  color: var(--color-text-light);
+}
 
-/* === THEME BUTTON === */
+body.dark-mode .gallery span::after,
+body.dark-mode .soccer-gallery span::after,
+body.dark-mode .gaming-gallery span::after,
+body.dark-mode .artists-gallery span::after,
+body.dark-mode .entertainment-gallery span::after {
+  background: var(--color-overlay);
+  color: #fff;
+}
+
+/* === BOTONES GENERALES === */
+.home-buttons button,
+.credit-buttons a,
+#theme-toggle,
+#toggle-music,
+.back-to-hobbies,
+#agent-questions button {
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+}
+
+.home-buttons button,
+.credit-buttons a,
+#theme-toggle,
+#toggle-music,
+.back-to-hobbies {
+  background: var(--color-primary);
+}
+
+.home-buttons button:hover,
+.credit-buttons a:hover,
+#theme-toggle:hover,
+#toggle-music:hover,
+.back-to-hobbies:hover {
+  background: var(--color-primary-dark);
+}
+
+.home-buttons button,
+.credit-buttons a,
+#theme-toggle,
+.back-to-hobbies {
+  border-radius: var(--radius-sm);
+}
+
+#toggle-music,
+#theme-toggle,
+#agent-questions button {
+  border-radius: var(--radius-md);
+}
+
+.home-buttons button {
+  margin: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  transition: var(--transition-default);
+}
+
+.credit-buttons a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background var(--transition-default);
+}
+
 #theme-toggle {
   margin-left: 1rem;
-  background: #C5191B;
-  color: white;
-  border: none;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
+  transition: background var(--transition-default);
 }
 
-#theme-toggle:hover {
-  background: #6F1315;
+#toggle-music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 6px var(--color-shadow-md);
+  transition: background var(--transition-default), transform var(--transition-default);
 }
 
-
-/* === Ripple Effect === */
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple-effect 0.6s linear;
-  background: rgba(255, 255, 255, 0.6);
-  pointer-events: none;
+#toggle-music:hover,
+.back-to-hobbies:hover {
+  transform: scale(1.05);
 }
 
-@keyframes ripple-effect {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
+.back-to-hobbies {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  transition: background var(--transition-default), transform var(--transition-fast);
 }
 
+#agent-questions button {
+  padding: 6px;
+  background: var(--color-primary);
+  font-size: 13px;
+  transition: var(--transition-fast);
+}
 
+#agent-questions button:hover {
+  background: var(--color-primary-darker);
+}
 
-/*=====================*/
-/* == SECCIÓN HOME == */
-/*===================*/
+/* === SECCIONES GENERALES === */
 .section {
   display: none;
   padding: 2rem;
@@ -117,30 +219,11 @@ body.dark-mode .home-buttons button:hover {
   display: block;
 }
 
-
-/* === IMÁGENES === */
-.profile-img {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 1rem 0;
-  border: 3px solid #C5191B; /* detalle elegante */
+main {
+  transition: opacity var(--transition-default) ease-in-out;
 }
 
-
-/* === BOTONES DE HOME === */
-.home-buttons button {
-  margin: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  background: #C5191B; /* rojo vibrante */
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
+/* === HOME === */
 .home-section {
   display: flex;
   justify-content: space-between;
@@ -158,96 +241,40 @@ body.dark-mode .home-buttons button:hover {
   text-align: center;
 }
 
-
-
-/*======================================*/
-/* == TWENTY ONE PILOTS ALBUM COVER == */
-/*====================================*/
-.album-cover {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: var(--radius-round);
   object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  margin-bottom: 1rem;
-  border: 3px solid #C5191B;
-  transition: transform 0.3s ease;
+  margin: 1rem 0;
+  border: 3px solid var(--color-primary);
 }
-
-.album-cover.spinning {
-  animation: spin 10s linear infinite;
-}
-
-#toggle-music:hover {
-  background: #6F1315;
-  transform: scale(1.05);
-}
-
-
-/* === CREDITOS === */
-.credit-buttons a {
-  text-decoration: none;
-  background: #C5191B;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.credit-buttons a:hover {
-  background: #6F1315;
-}
-
-
-/* === BOTÓN DE MÚSICA === */
-#toggle-music {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #C5191B;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s, transform 0.3s;
-}
-
-
-
-/*==============================*/
-/* == GIFS ANIMADOS Y OTROS == */
-/*============================*/
-/* === ANIMACIONES === */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 
 /* === HEADER LEFT === */
-.header-left {
+.header-left,
+.header-title {
   display: flex;
   align-items: center;
+}
+
+.header-left {
   gap: 1rem;
 }
 
+.header-title {
+  gap: 10px;
+}
+
+/* === GIFS === */
 #gif-container {
-  position: fixed; /* o absolute si lo quieres dentro de un bloque */
+  position: fixed;
   bottom: 20px;
   left: 20px;
   width: 150px;
   height: 130px;
   z-index: 100;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  /*box-shadow: 0 0 10px rgba(0,0,0,0.4);*/
 }
 
 #gif-container img {
@@ -255,28 +282,46 @@ body.dark-mode .home-buttons button:hover {
   height: 50%;
   object-fit: cover;
 }
-.home-buttons button:hover {
-  background: #6F1315; /* rojo oscuro */
+
+.name-gif {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: var(--radius-round);
+  animation: float 3s ease-in-out infinite;
+  transition: opacity 0.4s ease;
 }
 
+.fade-out {
+  opacity: 0;
+}
 
+/* === TWENTY ONE PILOTS === */
+.album-cover {
+  width: 250px;
+  height: 250px;
+  border-radius: var(--radius-round);
+  object-fit: cover;
+  box-shadow: 0 4px 10px var(--color-shadow-md);
+  margin-bottom: 1rem;
+  border: 3px solid var(--color-primary);
+  transition: transform var(--transition-default) ease;
+}
 
+.album-cover.spinning {
+  animation: spin 10s linear infinite;
+}
 
-/*================================*/
-/* == SECCIÓN DE PROFESSIONAL == */
-/*==============================*/
-/* === SKILLS === */
+/* === SKILLS / PROJECTS === */
 .skills span {
   display: inline-block;
-  background: #C5191B22; /* rojo translúcido */
-  color: #6F1315;
+  background: var(--color-skill-bg);
+  color: var(--color-primary-dark);
   margin: 0.3rem;
   padding: 0.3rem 0.6rem;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
 }
 
-
-/* === PROYECTOS === */
 .projects {
   display: flex;
   gap: 1rem;
@@ -284,80 +329,20 @@ body.dark-mode .home-buttons button:hover {
 }
 
 .card {
-  background: white;
+  background: var(--color-surface-light);
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  border-radius: var(--radius-md);
+  box-shadow: 0 3px 6px var(--color-shadow-sm);
   flex: 1 1 200px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform var(--transition-default), box-shadow var(--transition-default);
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 10px var(--color-shadow-lg);
 }
 
-
-/* === FOOTER === */
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #1B171B;
-  color: #DEDEDE;
-}
-
-
-
-
-/*==========================*/
-/* === ABOUT ME SECTION === */
-/*==========================*/
-.hobbies-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 1rem;
-}
-
-.hobby-link {
-  display: inline-block;
-  text-decoration: none;
-  background: #ffffff;
-  color: #0E0B0C;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #cfcfcf;
-  transition: background 0.3s, color 0.3s, transform 0.2s;
-}
-
-.hobby-link:hover {
-  background: #C5191B;
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-/* Dark mode */
-body.dark-mode #sobre-mi p {
-  color: #DEDEDE;
-}
-
-body.dark-mode .hobby-link {
-  background: #1B171B;
-  color: #DEDEDE;
-  border: 1px solid #444;
-}
-
-body.dark-mode .hobby-link:hover {
-  background: #6F1315;
-  color: #ffffff;
-}
-
-
-
-
-/*==========================*/
-/* === HOBBIES SECTION === */
-/*========================*/
+/* === HOBBIES === */
 .hobbies-container {
   display: flex;
   flex-wrap: wrap;
@@ -368,19 +353,16 @@ body.dark-mode .hobby-link:hover {
 
 .hobby-card {
   position: relative;
-  width: 150px;
-  height: 150px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-}
-
-.hobby-card:hover {
-  transform: scale(1.05);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  color: var(--color-white);
+  font-weight: bold;
+  transition: transform var(--transition-default) ease;
+  box-shadow: 0 4px 10px var(--color-shadow-xl);
 }
 
 .hobby-card span {
@@ -389,223 +371,251 @@ body.dark-mode .hobby-link:hover {
   left: 0;
   right: 0;
   text-align: center;
-  color: white;
+  color: var(--color-white);
   font-weight: bold;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 5px var(--color-overlay);
 }
 
-/*=============================*/
-/* === BOOK GALLERY STYLE === */
-/*===========================*/
-.book-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
-
-.book-gallery img {
-  width: 150px;
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-/* == Contenedor invisible que servirá para mostrar el texto == */
-.book-gallery span {
-  position: relative;
-  display: inline-block;
-}
-
-/* == Efecto hover == */
-.book-gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* == Nombre del artista == */
-.book-gallery span::after {
-  content: attr(data-name);
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 0.3rem;
-  border-radius: 0 0 15px 15px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  font-size: 0.85rem;
-  pointer-events: none;
-}
-
-/* == Mostrar el texto al hacer hover == */
-.book-gallery span:hover::after {
-  opacity: 1;
-}
-
-/* == Modo oscuro == */
-body.dark-mode .gallery span::after {
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-}
-
-
-/*===============================*/
-/* === GAMING GALLERY STYLE === */
-/*=============================*/
-.gaming-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
-
-.gaming-gallery img {
-  width: 150px;
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.gaming-gallery span {
-  position: relative;
-  display: inline-block;
-}
-
-.gaming-gallery img:hover {
-  transform: scale(1.05);
-}
-
-.gaming-gallery span::after {
-  content: attr(data-name);
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 0.3rem;
-  border-radius: 0 0 15px 15px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  font-size: 0.85rem;
-  pointer-events: none;
-}
-
-.gaming-gallery span:hover::after {
-  opacity: 1;
-}
-
-body.dark-mode .gaming-gallery span::after {
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-}
-
-/*========================*/
-/* === GALLERY STYLE === */
-/*======================*/
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
-
-.gallery img {
-  width: 150px;
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-/* == Contenedor invisible que servirá para mostrar el texto == */
-.gallery span {
-  position: relative;
-  display: inline-block;
-}
-
-/* == Efecto hover == */
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* == Nombre del artista == */
-.gallery span::after {
-  content: attr(data-name);
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 0.3rem;
-  border-radius: 0 0 15px 15px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  font-size: 0.85rem;
-  pointer-events: none;
-}
-
-/* == Mostrar el texto al hacer hover == */
-.gallery span:hover::after {
-  opacity: 1;
-}
-
-/* == Modo oscuro == */
-body.dark-mode .gallery span::after {
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-}
-
-/* == Efecto ripple == */
+/* Primera definición original preservada */
 .hobby-card {
-  position: relative;
-  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+}
+
+.hobby-card:hover {
+  transform: scale(1.05);
+}
+
+/* Segunda definición original preservada */
+.hobby-card {
   border-radius: 20px;
-  cursor: pointer;
-  background-size: cover;
-  background-position: center;
   width: 250px;
   height: 200px;
-  display: flex;
   align-items: end;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
   text-shadow: 0 0 5px black;
-  transition: transform 0.3s ease;
 }
 
 .hobby-card:hover {
   transform: scale(1.03);
 }
 
+/* === GALERÍAS COMPARTIDAS === */
+.book-gallery,
+.soccer-gallery,
+.gaming-gallery,
+.gallery,
+.artists-gallery,
+.entertainment-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.book-gallery span,
+.soccer-gallery span,
+.gaming-gallery span,
+.gallery span,
+.artists-gallery span,
+.entertainment-gallery span {
+  position: relative;
+  display: inline-block;
+}
+
+.book-gallery span::after,
+.soccer-gallery span::after,
+.gaming-gallery span::after,
+.gallery span::after,
+.artists-gallery span::after,
+.entertainment-gallery span::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--color-white);
+  background: var(--color-overlay);
+  padding: 0.3rem;
+  border-radius: 0 0 15px 15px;
+  opacity: 0;
+  transition: opacity var(--transition-default) ease;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.book-gallery span:hover::after,
+.soccer-gallery span:hover::after,
+.gaming-gallery span:hover::after,
+.gallery span:hover::after,
+.artists-gallery span:hover::after,
+.entertainment-gallery span:hover::after {
+  opacity: 1;
+}
+
+.book-gallery img,
+.soccer-gallery img,
+.gaming-gallery img,
+.gallery img,
+.entertainment-gallery img {
+  width: 150px;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  transition: transform var(--transition-default) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.book-gallery img,
+.soccer-gallery img,
+.gaming-gallery img,
+.gallery img,
+.artists-gallery img {
+  box-shadow: 0 4px 10px var(--color-shadow-lg);
+}
+
+.entertainment-gallery img {
+  box-shadow: 0 4px 10px var(--color-shadow-lg);
+}
+
+.book-gallery img:hover,
+.soccer-gallery img:hover,
+.gaming-gallery img:hover,
+.gallery img:hover,
+.entertainment-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* === ARTISTS GALLERY (tamaño especial preservado) === */
+.artists-gallery img {
+  width: 220px;
+  height: 220px;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  transition: transform var(--transition-default) ease, box-shadow var(--transition-default) ease, filter var(--transition-default) ease;
+}
+
+.artists-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px var(--color-shadow-xxl);
+  filter: brightness(1.1);
+}
+
+/* === AGENT === */
+#agent-button {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: var(--color-primary);
+  border-radius: var(--radius-round);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px var(--color-shadow-xxl);
+  z-index: 2000;
+}
+
+#agent-button img {
+  width: 70%;
+  border-radius: var(--radius-round);
+}
+
+#agent-chat {
+  display: none;
+  position: fixed;
+  bottom: 160px;
+  right: 20px;
+  width: 260px;
+  height: 320px;
+  background: black;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 15px var(--color-shadow-xl);
+  padding: 10px;
+  flex-direction: column;
+  z-index: 2000;
+}
+
+#agent-chat.open {
+  display: flex;
+}
+
+#agent-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 5px;
+  font-size: 14px;
+}
+
+#agent-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* === RIPPLE === */
+.ripple,
 .ripple-effect {
   position: absolute;
   transform: scale(0);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  animation: ripple-animation 0.6s linear;
+  border-radius: var(--radius-round);
   pointer-events: none;
+}
+
+.ripple {
+  animation: ripple-effect 0.6s linear;
+  background: var(--color-ripple);
+}
+
+.ripple-effect {
+  animation: ripple-animation 0.6s linear;
+  background: var(--color-ripple-soft);
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 @keyframes ripple-animation {
@@ -615,206 +625,19 @@ body.dark-mode .gallery span::after {
   }
 }
 
-.header-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-.name-gif {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  border-radius: 50%;
-  animation: float 3s ease-in-out infinite;
-  transition: opacity 0.4s ease;
-}
-
-.fade-out {
-  opacity: 0;
-}
-
-main {
-  transition: opacity 0.3s ease-in-out;
-}
-
-
-/* === BOTÓN BACK TO HOBBIES === */
-.back-to-hobbies {
-  display: inline-block;
-  margin: 10px 0;
-  padding: 0.6rem 1.2rem;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  background-color: #C5191B; /* rojo vibrante, mismo que home-buttons */
-  color: white;
-}
-
-.back-to-hobbies:hover {
-  background-color: #6F1315; /* rojo oscuro */
-  transform: scale(1.05);
-}
-
-/* === DARK MODE PARA BACK BUTTON === */
-body.dark-mode .back-to-hobbies {
-  background-color: #6F1315; /* coincide con home-buttons dark mode */
-  color: #DEDEDE;
-}
-
-body.dark-mode .back-to-hobbies:hover {
-  background-color: #C5191B; /* efecto invertido en hover */
-}
-
-/*==========================*/
-/* === ARTISTS GALLERY === */
-/*========================*/
-.artists-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
-
-.artists-gallery img {
-  width: 150px;
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-/* == Contenedor invisible que servirá para mostrar el texto == */
-.artists-gallery span {
-  position: relative;
-  display: inline-block;
-}
-
-/* == Efecto hover == */
-.artists-gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* == Nombre del artista == */
-.artists-gallery span::after {
-  content: attr(data-name);
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 0.3rem;
-  border-radius: 0 0 15px 15px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  font-size: 0.85rem;
-  pointer-events: none;
-}
-
-/* == Mostrar el texto al hacer hover == */
-.artists-gallery span:hover::after {
-  opacity: 1;
-}
-
-/* Modo oscuro */
-body.dark-mode .artists-gallery span::after {
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-}
-
-
-
-/*====================================*/
-/* === TV SHOWS & MOVIES GALLERY === */
-/*==================================*/
-.entertainment-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
-
-.entertainment-gallery img {
-  width: 150px;
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-/* == Contenedor invisible que servirá para mostrar el texto == */
-.entertainment-gallery span {
-  position: relative;
-  display: inline-block;
-}
-
-/* == Efecto hover == */
-.entertainment-gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* == Nombre del artista == */
-.entertainment-gallery span::after {
-  content: attr(data-name);
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 0.3rem;
-  border-radius: 0 0 15px 15px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  font-size: 0.85rem;
-  pointer-events: none;
-}
-
-/* == Mostrar el texto al hacer hover == */
-.entertainment-gallery span:hover::after {
-  opacity: 1;
-}
-
-/* == Modo oscuro == */
-body.dark-mode .entertainment-gallery span::after {
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-}
-
-
-
-/*=============================================*/
-/* === MÓVILES: PANTALLAS MENORES A 600PX === */
-/*===========================================*/
+/* === RESPONSIVE === */
 @media (max-width: 600px) {
   body {
-    font-size: 14px; /* texto más pequeño */
+    font-size: 14px;
   }
 
   .home-section {
-    flex-direction: column; /* apila elementos */
+    flex-direction: column;
     align-items: center;
   }
 
-  .home-left, .home-right {
+  .home-left,
+  .home-right {
     flex: 1 1 100%;
     text-align: center;
   }
@@ -844,105 +667,3 @@ body.dark-mode .entertainment-gallery span::after {
     height: 150px;
   }
 }
-
-/* == Estilo para la sección de música == */
-.artists-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
-
-.artists-gallery img {
-  width: 220px;
-  height: 220px;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
-}
-
-/* == Hover con efecto suave tipo zoom y resplandor == */
-.artists-gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-  filter: brightness(1.1);
-}
-
-
-
-/*=======================*/
-/* === AGENT STYLES === */
-/*=====================*/
-#agent-button {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background: #C5191B;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  z-index: 2000;
-}
-
-#agent-button img {
-  width: 70%;
-  border-radius: 50%;
-}
-
-#agent-chat {
-  display: none;
-  position: fixed;
-  bottom: 160px;
-  right: 20px;
-  width: 260px;
-  height: 320px;
-  background: black;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  padding: 10px;
-  flex-direction: column;
-  z-index: 2000;
-}
-
-/* Mostrar cuando tenga la clase 'open' */
-#agent-chat.open {
-  display: flex;
-}
-
-#agent-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 5px;
-  font-size: 14px;
-}
-
-#agent-questions {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 10px;
-}
-
-#agent-questions button {
-  padding: 6px;
-  background: #C5191B;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: 0.2s;
-}
-
-#agent-questions button:hover {
-  background: #A01417;
-}
-
-.hidden { display: none; }
