@@ -1,4 +1,4 @@
-import { addMessage, setChoices, isChatOpen, clearMessages } from './ui.js';
+import { addMessage, setChoices, isChatOpen, clearMessages, setStatus } from './ui.js';
 import { galleryItems, normalize } from '../scripts/galleries.js';
 
 const labels = { home: 'Home', 'sobre-mi': 'About Me', profesional: 'Professional', reading: 'Reading', gaming: 'Gaming', music: 'Music', soccer: 'Soccer', drawing: 'Drawing', 'tv-movies': 'TV Shows & Movies' };
@@ -16,6 +16,7 @@ function remember(category) {
   try { localStorage.setItem('jules-preference', category); } catch {}
 }
 function contextChoices() {
+  setStatus();
   const section = document.body.dataset.section;
   const choices = [];
   if (categories.includes(section)) choices.push(["What's in this gallery?", `list:${section}`], ['Pick something here', `pick:${section}`]);
@@ -43,6 +44,7 @@ function projects() {
   return [...document.querySelectorAll('#profesional .card')].map(element => ({ element, name: element.querySelector('h4').textContent, text: element.querySelector('p').textContent.trim().replace(/\s+/g, ' ') }));
 }
 function pick(category) {
+  setStatus();
   const items = galleryItems(category);
   if (!items.length) { addMessage('There are no items available in that gallery.'); contextChoices(); return; }
   remember(category);
@@ -52,6 +54,7 @@ function pick(category) {
   setChoices([['Another pick', `pick:${category}`], ['Change category', 'recommend'], ['Back to menu', 'help']]);
 }
 function tourStep() {
+  setStatus('GUIDING');
   if (flow.kind === 'work') {
     const items = projects();
     const item = items[flow.index];
@@ -70,10 +73,12 @@ function tourStep() {
 }
 function finishTour() { flow = null; addMessage('Tour complete. What would you like to explore next?'); contextChoices(); }
 function triviaQuestion() {
+  setStatus('TRIVIA');
   const questions = flow.questions;
   if (flow.index >= questions.length) {
     addMessage(`Trivia complete: ${flow.score} of ${questions.length} answers correct.`);
     flow = null;
+    setStatus();
     setChoices([['Play again', 'trivia'], ['Back to menu', 'help']]);
     return;
   }
@@ -167,6 +172,7 @@ export const agent = {
       addMessage("I'm Jules-T800, your guide to this blog. I answer questions about its content and help you navigate."); return;
     }
     if (['forget my preference', 'forget preferences', 'forget', 'olvidar mi preferencia', 'olvidar preferencias'].includes(text)) {
+      flow = null;
       preference = null;
       try { localStorage.removeItem('jules-preference'); } catch {}
       addMessage('I forgot your preferred category.'); contextChoices(); return;
@@ -174,7 +180,7 @@ export const agent = {
     if (['clear chat', 'limpiar chat'].includes(text)) { flow = null; clearMessages(); addMessage('Conversation reset.'); contextChoices(); return; }
     if (['trivia', 'jugar trivia'].includes(text)) { startTrivia(); return; }
     if (['guided tour', 'tour', 'recorrido', 'recorrido guiado'].includes(text)) {
-      flow = null; addMessage('Would you like to explore the projects or the hobbies?');
+      flow = null; setStatus(); addMessage('Would you like to explore the projects or the hobbies?');
       setChoices([['Projects', 'tour:work'], ['Hobbies', 'tour:hobbies'], ['Cancel', 'stop']]); return;
     }
     if (['tour:work', 'tour:hobbies'].includes(text)) {
@@ -189,6 +195,7 @@ export const agent = {
     if (recommendationCategories[text]) { flow = null; pick(recommendationCategories[text]); return; }
     if (['recommend something', 'recommend', 'recomiendame algo', 'recomiendame', 'recomendacion'].includes(text)) {
       flow = null;
+      setStatus();
       addMessage(preference ? `Your last category was ${labels[preference]}. Shall we stay there or try something else?` : 'What would you like to explore? I will pick an item from that collection.');
       const ordered = preference ? [preference, ...categories.filter(id => id !== preference)] : categories;
       setChoices(ordered.map(id => [labels[id], `pick:${id}`]).concat([['Cancel', 'stop']])); return;
@@ -222,6 +229,7 @@ export const agent = {
     const matches = categories.flatMap(galleryItems).filter(item => normalize(item.name).includes(query));
     if (query.length >= 2 && matches.length) {
       flow = null;
+      setStatus();
       if (matches.length === 1) { go(matches[0].section, matches[0].element); addMessage(`Found ${matches[0].name}. I highlighted it in its gallery.`); contextChoices(); }
       else {
         addMessage(`Found ${matches.length} matches. Choose one:`);

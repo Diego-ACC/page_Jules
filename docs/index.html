@@ -271,7 +271,11 @@
   
   <!-- Contenedor del chat -->
   <div id="agent-chat" class="" role="dialog" aria-label="Jules-T800 chat" aria-hidden="true">
-    <button id="close-agent-chat" class="close-chat" aria-label="Close chat">Close Jules T800</button>
+    <div class="terminal-header">
+      <div class="terminal-title"><span class="terminal-indicator" aria-hidden="true"></span>Jules-T800 <span class="terminal-label">TERMINAL</span></div>
+      <button id="close-agent-chat" class="close-chat" aria-label="Close Jules-T800 terminal">×</button>
+    </div>
+    <div class="terminal-meta"><span>LOCAL GUIDE</span><span id="agent-status" role="status">READY</span></div>
     <!-- Área de mensajes -->
     <div id="agent-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
     <!-- Preguntas pre-cargadas -->

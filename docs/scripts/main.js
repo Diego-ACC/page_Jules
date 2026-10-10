@@ -1,8 +1,10 @@
 import { openChat, closeChat, isChatOpen } from '../agent/ui.js';
 import { agent } from '../agent/agent.js';
 import { initGalleries } from './galleries.js';
+import { initMatrix } from './matrix.js';
 
 function init() {
+  initMatrix();
   const sections = [...document.querySelectorAll('main .section')];
   const links = [...document.querySelectorAll('nav a[data-target]')];
   function showSection(id) {
