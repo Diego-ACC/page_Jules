@@ -1,5 +1,6 @@
 import { openChat, closeChat, isChatOpen } from '../agent/ui.js';
 import { agent } from '../agent/agent.js';
+import { initGalleries } from './galleries.js';
 
 function init() {
   const sections = [...document.querySelectorAll('main .section')];
@@ -14,7 +15,8 @@ function init() {
   }
   const initial = sections.find(section => section.classList.contains('active'));
   if (initial) document.body.dataset.section = initial.id;
-  if (document.getElementById('agent-button')) agent.start();
+  initGalleries();
+  if (document.getElementById('agent-button')) agent.start({ navigate: showSection });
   document.addEventListener('click', event => {
     const link = event.target.closest('nav a[data-target]');
     if (link) {
@@ -26,8 +28,8 @@ function init() {
       else { openChat(); agent.notifyAgentClicked(); }
     } else if (event.target.closest('#close-agent-chat')) closeChat();
     else {
-      const question = event.target.closest('#agent-questions button');
-      if (question) agent.notifyQuestionSelected(Number(question.dataset.id));
+      const question = event.target.closest('[data-agent-command]');
+      if (question) agent.handle(question.dataset.agentCommand, question.textContent);
     }
   });
 
@@ -45,7 +47,7 @@ function init() {
     }
     function playMusic() { music.play().then(removeStart).catch(syncMusic); }
     function startMusic(event) {
-      if (!event.target.closest('#toggle-music')) playMusic();
+      if (!event.target.closest('#toggle-music, #agent-chat')) playMusic();
     }
     music.addEventListener('play', syncMusic);
     music.addEventListener('pause', syncMusic);
@@ -83,7 +85,7 @@ function init() {
   const greeting = document.querySelector('.home-left h2');
   if (greeting) {
     const hour = new Date().getHours();
-    greeting.textContent = hour < 12 ? '☀️ ¡You were sleep, time to wake up!' : hour < 19 ? '🌇 In the evening sun...' : '🌙 Good Night, see ya tomorrow';
+    greeting.textContent = hour < 12 ? '☀️ Time to wake up!' : hour < 19 ? '🌇 In the evening sun...' : '🌙 Good Night, see ya tomorrow';
   }
   const theme = document.getElementById('theme-toggle');
   if (theme) {

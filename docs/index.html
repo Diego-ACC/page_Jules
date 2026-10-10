@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,9 +29,9 @@
     <!-- Home -->
     <section id="home" class="active section home-section">
       <div class="home-left">
-        <h2>¡Hi there, Jules here👋!</h2>
+        <h2>Hi there, Jules here👋!</h2>
         <p>🛠️ Working on the webpage style 🛠️</p>
-        <img src="assets/img/profile.jpg" alt="Foto de Diego" class="profile-img" width="1354" height="1600" decoding="async">
+        <img src="assets/img/profile.jpg" alt="Photo of Diego" class="profile-img" width="1354" height="1600" decoding="async">
         <div class="home-buttons">
           <button onclick="alert('Contact soon... ⏳')">Contact me</button>
           <button onclick="alert('Later... ⏳')">Projects</button>
@@ -39,7 +39,7 @@
       </div>
 
       <div class="home-right">
-        <img id="vinyl" src="assets/img/breach.jpg" alt="Portada del álbum" class="album-cover" width="1200" height="1189" decoding="async">
+        <img id="vinyl" src="assets/img/breach.jpg" alt="Album cover" class="album-cover" width="1200" height="1189" decoding="async">
 
         <div class="music-info">
           <h3>🎧 Now Playing:</h3>
@@ -267,19 +267,22 @@
   <button id="toggle-music" aria-label="Pause or Play music">🎵 Music: Pause</button>
 
 <!-- Botón del agente -->
-  <div id="agent-button"> 🤖 </div>
+  <button id="agent-button" type="button" aria-label="Open Jules-T800" aria-controls="agent-chat" aria-expanded="false"> 🤖 </button>
   
   <!-- Contenedor del chat -->
-  <div id="agent-chat" class="" role="dialog" aria-label="Chat del agente" aria-hidden="true">
-    <button id="close-agent-chat" class="close-chat" aria-label="Cerrar chat">Close Jules T800</button>
+  <div id="agent-chat" class="" role="dialog" aria-label="Jules-T800 chat" aria-hidden="true">
+    <button id="close-agent-chat" class="close-chat" aria-label="Close chat">Close Jules T800</button>
     <!-- Área de mensajes -->
-    <div id="agent-messages"></div>
+    <div id="agent-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
     <!-- Preguntas pre-cargadas -->
     <div id="agent-questions">
-      <button data-id="1">¿Who are you?</button>
-      <button data-id="2">¿What can you do?</button>
-      <button data-id="3">Show me a project</button>
+      <button type="button" data-agent-command="help">What can you do?</button>
     </div>
+    <form id="agent-form">
+      <label for="agent-input" class="sr-only">Message Jules-T800</label>
+      <input id="agent-input" name="message" maxlength="200" autocomplete="off" placeholder="Try: show drawings or trivia">
+      <button type="submit">Send</button>
+    </form>
   </div>
   
   <script type="module" src="scripts/main.js"></script>

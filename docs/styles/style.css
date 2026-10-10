@@ -519,6 +519,9 @@ main {
 
 /* === AGENT === */
 #agent-button {
+  border: none;
+  color: var(--color-white);
+  font-size: 24px;
   position: fixed;
   bottom: 90px;
   right: 20px;
@@ -544,8 +547,10 @@ main {
   position: fixed;
   bottom: 160px;
   right: 20px;
-  width: 260px;
-  height: 320px;
+  width: min(360px, calc(100vw - 40px));
+  height: min(540px, calc(100dvh - 185px));
+  box-sizing: border-box;
+  color: #fff;
   background: black;
   border-radius: var(--radius-xl);
   box-shadow: 0 4px 15px var(--color-shadow-xl);
@@ -560,6 +565,7 @@ main {
 
 #agent-messages {
   flex: 1;
+  min-height: 80px;
   overflow-y: auto;
   padding: 5px;
   font-size: 14px;
@@ -570,6 +576,47 @@ main {
   flex-direction: column;
   gap: 6px;
   margin-top: 10px;
+  max-height: 145px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+#agent-form { display: flex; gap: 6px; margin-top: 10px; }
+#agent-input { min-width: 0; flex: 1; }
+#agent-form input, #agent-form button, .gallery-filters input,
+.gallery-filters select, .gallery-filters button { padding: 8px; border-radius: 8px; }
+#agent-form button, .gallery-filters button { cursor: pointer; }
+.agent-message { line-height: 1.5; overflow-wrap: anywhere; }
+.close-chat { cursor: pointer; flex-shrink: 0; border: none; border-radius: 8px; padding: 8px; background: #262126; color: #fff; }
+.gallery-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 16px 0; }
+.filter-field { display: flex; flex-direction: column; gap: 6px; }
+.gallery-filters { align-items: end; }
+.gallery-filters input, .gallery-filters select {
+  border: 1px solid var(--color-primary-dark);
+  background: var(--color-surface-light);
+  color: var(--color-text);
+  font: inherit;
+}
+.gallery-filters button, #agent-form button {
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.gallery-filters button:hover, #agent-form button:hover { background: var(--color-primary-dark); }
+body.dark-mode .gallery-filters input, body.dark-mode .gallery-filters select {
+  background: var(--color-surface-dark);
+  color: var(--color-text-light);
+}
+.gallery-filters input { max-width: 100%; box-sizing: border-box; }
+.hobby-section [data-name][hidden] { display: none; }
+.jules-highlight { outline: 3px solid var(--color-primary); outline-offset: 5px; border-radius: 12px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+#agent-chat button:focus-visible, #agent-input:focus-visible, #agent-button:focus-visible,
+.gallery-filters :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+@media (max-height: 600px) {
+  #agent-chat { bottom: 85px; height: calc(100dvh - 100px); }
+  #agent-questions { max-height: 100px; }
 }
 
 .hidden {

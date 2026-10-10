@@ -1,53 +1,46 @@
-// UI del agente: funciones que trabajan con el DOM al ser llamadas
-// Obtener referencias a los elementos del DOM del agente
-const chatBox = document.getElementById("agent-chat");
-const messagesContainer = document.getElementById("agent-messages");
-
-
-// Función para abrir el chat (visual)
-export function openChat(){
-    const box = document.getElementById("agent-chat");
-    if(!box) return;
-    box.classList.add("open");
-    box.setAttribute("aria-hidden", "false");
+export function openChat() {
+  const box = document.getElementById('agent-chat');
+  if (!box) return;
+  box.classList.add('open');
+  box.setAttribute('aria-hidden', 'false');
+  document.getElementById('agent-button')?.setAttribute('aria-expanded', 'true');
+  document.getElementById('agent-input')?.focus();
 }
-
-// Función para cerrar el chat (visual)
-export function closeChat(){
-    const box = document.getElementById("agent-chat");
-    if(!box) return;
-    clearMessages();
-    box.classList.remove("open");
-    box.setAttribute("aria-hidden", "true");
+export function closeChat() {
+  const box = document.getElementById('agent-chat');
+  if (!box) return;
+  box.classList.remove('open');
+  box.setAttribute('aria-hidden', 'true');
+  document.getElementById('agent-button')?.setAttribute('aria-expanded', 'false');
+  document.getElementById('agent-button')?.focus();
 }
-
-
-export function isChatOpen(){
-    const box = document.getElementById("agent-chat");
-    if(!box) return false;
-    return box.classList.contains("open");
+export function isChatOpen() {
+  return document.getElementById('agent-chat')?.classList.contains('open') || false;
 }
-
-
-// Agregar un mensaje al chat
-export function addMessage(text){
-    const msgBox = document.getElementById("agent-messages");
-    if(!msgBox) return;
-
-    const div = document.createElement("div");
-    div.classList.add("agent-message");
-    div.textContent = text;
-
-    msgBox.appendChild(div);
-    msgBox.scrollTop = msgBox.scrollHeight;
+export function addMessage(text, speaker = 'Jules') {
+  const box = document.getElementById('agent-messages');
+  if (!box) return;
+  const message = document.createElement('p');
+  message.className = 'agent-message';
+  const name = document.createElement('strong');
+  name.textContent = `${speaker}: `;
+  message.append(name, document.createTextNode(text));
+  box.append(message);
+  // Limitar el historial visible para evitar crecimiento ilimitado del DOM.
+  while (box.children.length > 60) box.firstElementChild.remove();
+  box.scrollTop = box.scrollHeight;
 }
-
-
-// Borrar los mensajes del chat
-export function clearMessages(){
-    const msgBox = document.getElementById("agent-messages");
-    if(!msgBox) return;
-    while(msgBox.firstChild){
-        msgBox.removeChild(msgBox.firstChild);
-    }
+export function setChoices(choices) {
+  const box = document.getElementById('agent-questions');
+  if (!box) return;
+  box.replaceChildren(...choices.map(([label, command]) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = label;
+    button.dataset.agentCommand = command;
+    return button;
+  }));
+}
+export function clearMessages() {
+  document.getElementById('agent-messages')?.replaceChildren();
 }
