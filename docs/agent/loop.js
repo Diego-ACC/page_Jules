@@ -1,9 +1,6 @@
 import { sensors } from "./sensors.js";
-import { evaluateRules } from "./rules.js";
 
 export function startAgentLoop() {
-    setInterval(() => {
-        sensors.checkSection();
-        evaluateRules.evaluate();
-    }, 300);
+    // Los eventos de navegación y del chat notifican los cambios directamente.
+    sensors.checkSection();
 }
