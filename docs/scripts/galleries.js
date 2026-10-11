@@ -10,15 +10,15 @@ const filters = {
     'Fiction': ['La Maldición de Hill House (Shirley Jackson)']
   } },
   gaming: { label: 'Search games', placeholder: 'Game title', groups: {
-    'Horror': ['Resident Evil 0', 'Resident Evil 1', 'Resident Evil 2', 'Resident Evil 4', 'Resident Evil 5', 'Resident Evil 6', 'Resident Evil 7', 'Resident Evil Village', 'Resident Evil Requiem', 'Silent Hill 2'],
+    'Horror': ['Resident Evil 0', 'Resident Evil 1', 'Resident Evil 2', 'Resident Evil 4', 'Resident Evil 5', 'Resident Evil 6', 'Resident Evil 7', 'Resident Evil Village', 'Resident Evil Requiem', 'Silent Hill 2', 'Silent Hill f', 'The Last of Us Part I'],
     'Fighting': ['Super Smash Bros Melee', 'Marvel vs Capcom 3'],
-    'Action & adventure': ['Titanfall', 'Rise of the Tomb Rider', 'Shadow of the Tomb Rider', "Assasin's Creed Black Flag", 'Borderlands 2', 'Devil May Cry 4', 'The Legend of Zelda: Ocarina of Time'],
+    'Action & adventure': ['Titanfall', 'Rise of the Tomb Rider', 'Shadow of the Tomb Rider', "Assasin's Creed Black Flag", 'Borderlands 2', 'Devil May Cry 4', 'The Legend of Zelda: Ocarina of Time', 'Gears of War', 'The Last of Us Part I'],
     'Role-playing': ['Final Fantasy XV', 'Borderlands 2', 'Stardew Valley'],
     'Sandbox & simulation': ['Minecraft', 'Stardew Valley', 'Terraria']
   } },
   music: { label: 'Search music', placeholder: 'Artist or band name', groups: {
-    'Bands & duos': ['Avenged Sevenfold', 'Arctic Monkeys', 'Caifanes', 'Twenty One Pilots', 'Paramore', 'Oasis', 'The Warning', 'The Strokes', 'Green Day'],
-    'Solo artists': ['The Weekend', 'José Madero', 'Harry Styles', 'Julian Casablancas', 'Joji', 'Sabrina Carpenter', 'Kanye West', 'Avril Lavigne']
+    'Bands & duos': ['Avenged Sevenfold', 'Arctic Monkeys', 'Caifanes', 'Twenty One Pilots', 'Paramore', 'Oasis', 'The Warning', 'The Strokes', 'Green Day', 'Balu Brigada', 'Daft Punk', 'The 1975', 'Bon Jovi', 'Mecano', 'Enjambre'],
+    'Solo artists': ['The Weekend', 'José Madero', 'Harry Styles', 'Julian Casablancas', 'Joji', 'Sabrina Carpenter', 'Kanye West', 'Avril Lavigne', 'Michael Jackson', 'Siddhartha']
   } },
   soccer: { label: 'Search soccer', placeholder: 'Club or national team name', groups: {
     'Clubs': ['Pumas UNAM', 'Real Madrid', 'AC Milan', 'Borussia Dortmund'],
@@ -30,9 +30,10 @@ const filters = {
     'Music artwork': ["Sabrina Carpenter (Short n' Sweet)", 'Twenty One Pilots (BREACH)', 'José Madero (Sarajevo)']
   } },
   'tv-movies': { label: 'Search movies & TV', placeholder: 'Movie or show title', groups: {
-    'Horror & suspense': ['Annabelle Creation', 'The Conjuring', 'LONGLEGS', 'World War Z'],
-    'Action & adventure': ['World War Z', 'Drive', 'The Fall Guy', 'The Nice Guys', 'Godzilla'],
-    'Drama': ['Blue Valentine', 'Rocky', 'Creed ||', 'Drive', 'The Dirt', 'The Imitation Game'],
+    'Horror & suspense': ['Annabelle Creation', 'The Conjuring', 'LONGLEGS', 'World War Z', 'Resident Evil: Noche Cero', 'The Last of Us'],
+    'Action & adventure': ['World War Z', 'Drive', 'The Fall Guy', 'The Nice Guys', 'Godzilla', 'The Dark Knight', 'Interstellar', 'Resident Evil: Noche Cero', 'Blade Runner 2049', 'The Last of Us'],
+    'Drama': ['Blue Valentine', 'Rocky', 'Creed ||', 'Drive', 'The Dirt', 'The Imitation Game', 'The Place Beyond the Pines', 'Rocky II', 'Rocky V', 'The Notebook', 'The Dark Knight', 'Interstellar', 'Blade Runner 2049', 'The Last of Us'],
+    'Science fiction': ['Godzilla', 'Interstellar', 'Blade Runner 2049'],
     'Comedy': ['The Fall Guy', 'The Nice Guys'],
     'Music & biography': ['The Dirt', 'The Imitation Game']
   } }
